@@ -6,4 +6,5 @@ export interface NodeHandler {
   genesis: () => Promise<string>
   metadata: () => Promise<string>
   runtime: () => Promise<Runtime>
+  submitTx: (tx: string) => Promise<string>
 }

@@ -38,4 +38,11 @@ export class Node implements NodeHandler {
     const run = await this.rpc.get('runtime') as Runtime
     return run
   }
+
+  async submitTx (tx: string) {
+    const txhash = await this.rpc.post('submitTx', {
+      tx
+    }) as string
+    return txhash
+  }
 }

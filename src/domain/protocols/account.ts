@@ -11,5 +11,9 @@ export interface AccountHandler {
 
   enableAccountBySeed: () => Promise<void>
 
-  publicKey: (ss58: number) => string
+  publicKey: () => string
+
+  getNonce: () => Promise<number>
+
+  sign: (tx: string) => `0x${string}`
 }

@@ -3,6 +3,8 @@ import { mnemonicGenerate, mnemonicValidate, mnemonicToMiniSecret, cryptoWaitRea
 import { KeyringPair, deriveAddress, TypeRegistry } from '@substrate/txwrapper-core'
 import { u8aToHex, hexToU8a } from '@polkadot/util'
 import { AccountHandler } from '@/domain/protocols/account'
+import { EXTRINSIC_VERSION } from '@polkadot/types/extrinsic/v4/Extrinsic'
+import { RpcHandler } from '@/domain/protocols/rpc'
 
 export class Account implements AccountHandler {
   private readonly keyring = new Keyring({ type: 'sr25519' })
@@ -11,7 +13,8 @@ export class Account implements AccountHandler {
   private account: KeyringPair
 
   constructor (
-    private readonly registry: TypeRegistry
+    private readonly registry: TypeRegistry,
+    private readonly rpc: RpcHandler
   ) {}
 
   createMnemonic () {
@@ -56,5 +59,21 @@ export class Account implements AccountHandler {
   publicKey () {
     if (!this.account) throw new Error('Account not instantiate')
     return deriveAddress(this.account.publicKey, this.registry.chainSS58)
+  }
+
+  async getNonce () {
+    const publicKey = this.publicKey()
+    const nonce = await this.rpc.get('getNonce', {
+      account: publicKey
+    })
+    return nonce
+  }
+
+  sign (tx) {
+    if (!this.account) throw new Error('Account not instantiate')
+    const { signature } = this.registry.createType('ExtrinsicPayload', tx, {
+      version: EXTRINSIC_VERSION
+    }).sign(this.account)
+    return signature
   }
 }
