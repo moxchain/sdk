@@ -1,4 +1,5 @@
 import { Registry } from './registry'
+import { Account } from './account'
 
 interface InitializeParams {
   serviceUrl: string
@@ -6,7 +7,8 @@ interface InitializeParams {
 
 export const initialize = (params: InitializeParams) => {
   const module = {
-    registry: new Registry()
+    registry: new Registry(),
+    account: new Account()
   }
 
   return module
