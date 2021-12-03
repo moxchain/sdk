@@ -1,13 +1,18 @@
 import { Keyring } from '@polkadot/api'
 import { mnemonicGenerate, mnemonicValidate, mnemonicToMiniSecret, cryptoWaitReady } from '@polkadot/util-crypto'
-import { KeyringPair, deriveAddress } from '@substrate/txwrapper-core'
+import { KeyringPair, deriveAddress, TypeRegistry } from '@substrate/txwrapper-core'
 import { u8aToHex, hexToU8a } from '@polkadot/util'
+import { AccountHandler } from '@/domain/protocols/account'
 
-export class Account {
+export class Account implements AccountHandler {
   private readonly keyring = new Keyring({ type: 'sr25519' })
   private mnemonic: string
   private seed: Uint8Array
   private account: KeyringPair
+
+  constructor (
+    private readonly registry: TypeRegistry
+  ) {}
 
   createMnemonic () {
     this.mnemonic = mnemonicGenerate()
@@ -48,8 +53,8 @@ export class Account {
     this.account = this.keyring.addFromSeed(this.seed)
   }
 
-  publicKey (ss58: number) {
+  publicKey () {
     if (!this.account) throw new Error('Account not instantiate')
-    return deriveAddress(this.account.publicKey, ss58)
+    return deriveAddress(this.account.publicKey, this.registry.chainSS58)
   }
 }

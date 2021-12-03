@@ -2,14 +2,19 @@
   "name": "@mox/utility",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rimraf dist",
+    "build": "npm run clean && tsc -p tsconfig-build.json && tsc-alias"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^16.11.11",
+    "@types/superagent": "^4.1.13",
     "eslint": "^7.29.0",
     "eslint-config-standard-with-typescript": "^20.0.0",
     "eslint-plugin-import": "^2.23.4",
