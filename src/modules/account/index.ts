@@ -61,14 +61,6 @@ export class Account implements AccountHandler {
     return deriveAddress(this.account.publicKey, this.registry.chainSS58)
   }
 
-  async save () {
-    const publicKey = this.publicKey()
-    const account = await this.rpc.post('add', {
-      address: publicKey
-    })
-    return account.id as string
-  }
-
   async getNonce () {
     const publicKey = this.publicKey()
     const nonce = await this.rpc.get('getNonce', {

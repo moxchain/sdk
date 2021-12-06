@@ -3,8 +3,6 @@ export interface AccountHandler {
 
   setMnemonic: (phrase: string) => void
 
-  save: () => Promise<string>
-
   setSeed: (seed: string) => void
 
   mnemonicToSeed: () => string
