@@ -21,6 +21,9 @@ interface InitializeParams {
   network: 'aquarium'
 }
 
+export {
+  UnsignedTransaction
+} from '@substrate/txwrapper-core'
 export interface Modules {
   node: NodeHandler
   registry: TypeRegistry

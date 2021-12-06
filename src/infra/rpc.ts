@@ -6,8 +6,8 @@ export class Rpc implements RpcHandler {
     private readonly serviceUrl: string
   ) {}
 
-  async get (method, body) {
-    const res = await agent.get(`${this.serviceUrl}/${method}`).send(body)
+  async get (method) {
+    const res = await agent.get(`${this.serviceUrl}/${method}`)
     if (res.statusCode !== 200) throw new Error(res.body)
     return res.body
   }

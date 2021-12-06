@@ -66,9 +66,7 @@ export class Account implements AccountHandler {
 
   async getNonce () {
     const publicKey = this.publicKey()
-    const nonce = await this.rpc.get('getNonce', {
-      account: publicKey
-    })
+    const nonce = await this.rpc.get(`getNonce/${publicKey}`)
     return nonce
   }
 
