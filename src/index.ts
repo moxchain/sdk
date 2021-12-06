@@ -1,10 +1,13 @@
-import { Registry } from '@/modules/registry'
-import { Account } from '@/modules/account'
-import { Node } from '@/modules/node'
-import { Rpc } from '@/infra/rpc'
-import { Context } from '@/modules/context'
-import { Transaction } from '@/modules/transaction'
-import { Author } from '@/modules/author'
+import { Rpc } from './infra/rpc'
+import {
+  Account,
+  Admin,
+  Author,
+  Context,
+  Node,
+  Registry,
+  Transaction
+} from './modules'
 import { createMetadata } from '@substrate/txwrapper-core'
 interface InitializeParams {
   serviceUrl: string
@@ -31,6 +34,7 @@ export default async (params: InitializeParams) => {
   const transaction = new Transaction(metadataRpc, registry, node, account, runtime.specVersion, runtime.transactionVersion)
   const context = new Context(metadataRpc, registry, transaction)
   const author = new Author(rpc)
+  const admin = new Admin(account, rpc)
 
   const modules = {
     node,
@@ -38,7 +42,8 @@ export default async (params: InitializeParams) => {
     account,
     context,
     transaction,
-    author
+    author,
+    admin
   }
 
   return modules
