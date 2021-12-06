@@ -7,9 +7,11 @@ export interface AccountHandler {
 
   mnemonicToSeed: () => string
 
-  enableAccountByMnemonic: () => Promise<void>
+  enableAccountByMnemonic: () => void
 
-  enableAccountBySeed: () => Promise<void>
+  enableAccountBySeed: () => void
+
+  disableAccount: () => void
 
   publicKey: () => string
 

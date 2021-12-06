@@ -1,5 +1,5 @@
 import { Keyring } from '@polkadot/api'
-import { mnemonicGenerate, mnemonicValidate, mnemonicToMiniSecret, cryptoWaitReady } from '@polkadot/util-crypto'
+import { mnemonicGenerate, mnemonicValidate, mnemonicToMiniSecret } from '@polkadot/util-crypto'
 import { KeyringPair, deriveAddress, TypeRegistry } from '@substrate/txwrapper-core'
 import { u8aToHex, hexToU8a } from '@polkadot/util'
 import { AccountHandler } from '@/domain/protocols/account'
@@ -42,18 +42,21 @@ export class Account implements AccountHandler {
     return u8aToHex(this.seed)
   }
 
-  async enableAccountByMnemonic () {
+  enableAccountByMnemonic () {
     if (!this.mnemonic || this.mnemonic.length < 10) {
       throw new Error('Mnemonic not instantiate')
     }
-    await cryptoWaitReady()
     this.account = this.keyring.addFromUri(this.mnemonic)
   }
 
-  async enableAccountBySeed () {
+  enableAccountBySeed () {
     if (!this.seed) throw new Error('Seed not instantiate')
-    await cryptoWaitReady()
     this.account = this.keyring.addFromSeed(this.seed)
+  }
+
+  disableAccount () {
+    if (!this.account) throw new Error('Account not instantiate')
+    this.account = undefined
   }
 
   publicKey () {
