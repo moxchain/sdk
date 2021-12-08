@@ -1,6 +1,7 @@
 import { ContextHandler } from '@/domain/protocols/context'
 import { TypeRegistry } from '@substrate/txwrapper-core'
 import { createContext as methodCreateContext } from '@/methods/context/createContext'
+import { transferContext as methodtransferContext } from '@/methods/context/transferContext'
 import { TransactionHandler } from '@/domain/protocols/transaction'
 
 export class Context implements ContextHandler {
@@ -26,7 +27,7 @@ export class Context implements ContextHandler {
 
   async transferContext (params, era) {
     const transactionInfo = await this.transaction.constructInfo(era)
-    const unsigned = methodCreateContext({
+    const unsigned = methodtransferContext({
       ...params
     },
     transactionInfo,
