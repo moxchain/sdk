@@ -1,6 +1,8 @@
 import { ActorHandler } from '@/domain/protocols/actor'
 import { TypeRegistry } from '@substrate/txwrapper-core'
 import { createActor as methodCreateActor } from '@/methods/actor/createActor'
+import { createActorAttribute as methodCreateActorAttribute } from '@/methods/actor/createActorAttribute'
+
 import { TransactionHandler } from '@/domain/protocols/transaction'
 
 export class Actor implements ActorHandler {
@@ -15,6 +17,20 @@ export class Actor implements ActorHandler {
     const unsigned = methodCreateActor(
       {
         ...actor
+      },
+      transactionInfo,
+      {
+        metadataRpc: this.metadataRpc,
+        registry: this.registry
+      })
+    return unsigned
+  }
+
+  async createActorAttribute (attribute, era) {
+    const transactionInfo = await this.transaction.constructInfo(era)
+    const unsigned = methodCreateActorAttribute(
+      {
+        ...attribute
       },
       transactionInfo,
       {

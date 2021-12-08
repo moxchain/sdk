@@ -8,6 +8,14 @@ interface ActorParams {
   price: number | null
 }
 
+interface ActorAttributeParams {
+  identifier: number
+  val: number
+  mutable: boolean
+  actorId: string
+  contextId: string
+}
 export interface ActorHandler {
   createActor: (actor: ActorParams, era: number) => Promise<UnsignedTransaction>
+  createActorAttribute: (attribute: ActorAttributeParams, era: number) => Promise<UnsignedTransaction>
 }
