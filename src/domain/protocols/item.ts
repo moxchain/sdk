@@ -8,6 +8,14 @@ interface ItemParams {
   availableToSale: boolean
 }
 
+interface ItemActionParams {
+  itemId: string
+  targetCommonType: number
+  actorAttributeIndex: number
+  operation: boolean
+  amount: number
+}
 export interface ItemHandler {
   createItem: (item: ItemParams, era: number) => Promise<UnsignedTransaction>
+  createItemAction: (action: ItemActionParams, era: number) => Promise<UnsignedTransaction>
 }
