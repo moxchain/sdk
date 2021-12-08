@@ -1,6 +1,7 @@
 import { Rpc } from './infra/rpc'
 import {
   Account,
+  Actor,
   Admin,
   Author,
   Context,
@@ -15,6 +16,7 @@ import { ContextHandler } from './domain/protocols/context'
 import { TransactionHandler } from './domain/protocols/transaction'
 import { AdminHandler } from './domain/protocols/admin'
 import { AuthorHandler } from './domain/protocols/author'
+import { ActorHandler } from './domain/protocols/actor'
 import { cryptoWaitReady } from '@polkadot/util-crypto'
 interface InitializeParams {
   serviceUrl: string
@@ -32,6 +34,7 @@ export interface Modules {
   transaction: TransactionHandler
   author: AuthorHandler
   admin: AdminHandler
+  actor: ActorHandler
 }
 
 export default async (params: InitializeParams): Promise<Modules> => {
@@ -53,6 +56,7 @@ export default async (params: InitializeParams): Promise<Modules> => {
   const account = new Account(registry, rpc)
   const transaction = new Transaction(metadataRpc, registry, node, account, runtime.specVersion, runtime.transactionVersion)
   const context = new Context(metadataRpc, registry, transaction)
+  const actor = new Actor(metadataRpc, registry, transaction)
   const author = new Author(rpc)
   const admin = new Admin(account, rpc)
 
@@ -65,7 +69,8 @@ export default async (params: InitializeParams): Promise<Modules> => {
     context,
     transaction,
     author,
-    admin
+    admin,
+    actor
   }
 
   return modules
