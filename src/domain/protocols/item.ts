@@ -26,9 +26,16 @@ interface BuyItemParams {
   itemId: string
   amount: number
 }
+
+interface TransferItemParams {
+  itemId: string
+  amount: number
+  to: string
+}
 export interface ItemHandler {
   createItem: (item: ItemParams, era: number) => Promise<UnsignedTransaction>
   createItemAction: (action: ItemActionParams, era: number) => Promise<UnsignedTransaction>
   changeItemSaleStatus: (saleStatus: ItemSaleStatusParams, era: number) => Promise<UnsignedTransaction>
   buyItem: (buy: BuyItemParams, era: number) => Promise<UnsignedTransaction>
+  transferItem: (transfer: TransferItemParams, era: number) => Promise<UnsignedTransaction>
 }
