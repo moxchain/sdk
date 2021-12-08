@@ -7,7 +7,8 @@ import {
   Context,
   Node,
   Registry,
-  Transaction
+  Transaction,
+  Item
 } from './modules'
 import { createMetadata, TypeRegistry } from '@substrate/txwrapper-core'
 import { NodeHandler } from './domain/protocols/node'
@@ -18,6 +19,7 @@ import { AdminHandler } from './domain/protocols/admin'
 import { AuthorHandler } from './domain/protocols/author'
 import { ActorHandler } from './domain/protocols/actor'
 import { cryptoWaitReady } from '@polkadot/util-crypto'
+import { ItemHandler } from './domain/protocols/item'
 interface InitializeParams {
   serviceUrl: string
   network: 'aquarium'
@@ -35,6 +37,7 @@ export interface Modules {
   author: AuthorHandler
   admin: AdminHandler
   actor: ActorHandler
+  item: ItemHandler
 }
 
 export default async (params: InitializeParams): Promise<Modules> => {
@@ -57,6 +60,7 @@ export default async (params: InitializeParams): Promise<Modules> => {
   const transaction = new Transaction(metadataRpc, registry, node, account, runtime.specVersion, runtime.transactionVersion)
   const context = new Context(metadataRpc, registry, transaction)
   const actor = new Actor(metadataRpc, registry, transaction)
+  const item = new Item(metadataRpc, registry, transaction)
   const author = new Author(rpc)
   const admin = new Admin(account, rpc)
 
@@ -70,7 +74,8 @@ export default async (params: InitializeParams): Promise<Modules> => {
     transaction,
     author,
     admin,
-    actor
+    actor,
+    item
   }
 
   return modules
