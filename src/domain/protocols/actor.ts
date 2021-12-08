@@ -21,9 +21,15 @@ interface ActorSaleStatusParams {
   availableToSale: boolean
   price: number | null
 }
+
+interface TransferActorParams {
+  actorId: string
+  to: string
+}
 export interface ActorHandler {
   createActor: (actor: ActorParams, era: number) => Promise<UnsignedTransaction>
   createActorAttribute: (attribute: ActorAttributeParams, era: number) => Promise<UnsignedTransaction>
   changeActorSaleStatus: (saleStatus: ActorSaleStatusParams, era: number) => Promise<UnsignedTransaction>
   buyActor: (actorId: string, era: number) => Promise<UnsignedTransaction>
+  transferActor: (transfer: TransferActorParams, era: number) => Promise<UnsignedTransaction>
 }
