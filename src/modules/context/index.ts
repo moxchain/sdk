@@ -23,4 +23,18 @@ export class Context implements ContextHandler {
     )
     return unsigned
   }
+
+  async transferContext (params, era) {
+    const transactionInfo = await this.transaction.constructInfo(era)
+    const unsigned = methodCreateContext({
+      ...params
+    },
+    transactionInfo,
+    {
+      metadataRpc: this.metadataRpc,
+      registry: this.registry
+    }
+    )
+    return unsigned
+  }
 }
