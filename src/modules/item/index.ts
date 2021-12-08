@@ -6,6 +6,7 @@ import { createItemAction as methodCreateItemAction } from '@/methods/item/creat
 import { changeItemSaleStatus as methodChangeItemSaleStatus } from '@/methods/item/changeItemSaleStatus'
 import { buyItem as methodBuyItem } from '@/methods/item/buyItem'
 import { transferItem as methodTransferItem } from '@/methods/item/transferItem'
+import { consumeItem as methodConsumeItem } from '@/methods/item/consumeItem'
 
 export class Item implements ItemHandler {
   constructor (
@@ -75,6 +76,20 @@ export class Item implements ItemHandler {
     const unsigned = methodTransferItem(
       {
         ...transfer
+      },
+      transactionInfo,
+      {
+        metadataRpc: this.metadataRpc,
+        registry: this.registry
+      })
+    return unsigned
+  }
+
+  async consumeItem (consume, era) {
+    const transactionInfo = await this.transaction.constructInfo(era)
+    const unsigned = methodConsumeItem(
+      {
+        ...consume
       },
       transactionInfo,
       {

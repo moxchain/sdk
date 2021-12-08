@@ -32,10 +32,16 @@ interface TransferItemParams {
   amount: number
   to: string
 }
+
+interface ConsumeItemParams {
+  itemId: string
+  actorId: string
+}
 export interface ItemHandler {
   createItem: (item: ItemParams, era: number) => Promise<UnsignedTransaction>
   createItemAction: (action: ItemActionParams, era: number) => Promise<UnsignedTransaction>
   changeItemSaleStatus: (saleStatus: ItemSaleStatusParams, era: number) => Promise<UnsignedTransaction>
   buyItem: (buy: BuyItemParams, era: number) => Promise<UnsignedTransaction>
   transferItem: (transfer: TransferItemParams, era: number) => Promise<UnsignedTransaction>
+  consumeItem: (consume: ConsumeItemParams, era: number) => Promise<UnsignedTransaction>
 }
