@@ -25,4 +25,5 @@ export interface ActorHandler {
   createActor: (actor: ActorParams, era: number) => Promise<UnsignedTransaction>
   createActorAttribute: (attribute: ActorAttributeParams, era: number) => Promise<UnsignedTransaction>
   changeActorSaleStatus: (saleStatus: ActorSaleStatusParams, era: number) => Promise<UnsignedTransaction>
+  buyActor: (actorId: string, era: number) => Promise<UnsignedTransaction>
 }

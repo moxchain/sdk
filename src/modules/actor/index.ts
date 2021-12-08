@@ -3,6 +3,7 @@ import { TypeRegistry } from '@substrate/txwrapper-core'
 import { createActor as methodCreateActor } from '@/methods/actor/createActor'
 import { createActorAttribute as methodCreateActorAttribute } from '@/methods/actor/createActorAttribute'
 import { changeActorSaleStatus as methodChangeActorSaleStatus } from '@/methods/actor/changeActorSaleStatus'
+import { buyActor as methodBuyActor } from '@/methods/actor/buyActor'
 
 import { TransactionHandler } from '@/domain/protocols/transaction'
 
@@ -46,6 +47,20 @@ export class Actor implements ActorHandler {
     const unsigned = methodChangeActorSaleStatus(
       {
         ...saleStatus
+      },
+      transactionInfo,
+      {
+        metadataRpc: this.metadataRpc,
+        registry: this.registry
+      })
+    return unsigned
+  }
+
+  async buyActor (actorId, era) {
+    const transactionInfo = await this.transaction.constructInfo(era)
+    const unsigned = methodBuyActor(
+      {
+        actorId
       },
       transactionInfo,
       {
