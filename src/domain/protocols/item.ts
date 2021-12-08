@@ -16,13 +16,19 @@ interface ItemActionParams {
   amount: number
 }
 
-interface ItemSaleStatus {
+interface ItemSaleStatusParams {
   itemId: string
   unitPrice: number
   availableToSale: boolean
 }
+
+interface BuyItemParams {
+  itemId: string
+  amount: number
+}
 export interface ItemHandler {
   createItem: (item: ItemParams, era: number) => Promise<UnsignedTransaction>
   createItemAction: (action: ItemActionParams, era: number) => Promise<UnsignedTransaction>
-  changeItemSaleStatus: (saleStatus: ItemSaleStatus, era: number) => Promise<UnsignedTransaction>
+  changeItemSaleStatus: (saleStatus: ItemSaleStatusParams, era: number) => Promise<UnsignedTransaction>
+  buyItem: (buy: BuyItemParams, era: number) => Promise<UnsignedTransaction>
 }
