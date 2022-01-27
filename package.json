@@ -1,6 +1,7 @@
 {
   "name": "@moxchain/sdk",
   "version": "1.0.0",
+  "repository": "https://github.com/moxchain/sdk",
   "description": "",
   "main": "dist/index.js",
   "files": [
