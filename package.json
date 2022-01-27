@@ -1,7 +1,8 @@
 {
   "name": "@moxchain/sdk",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": "https://github.com/moxchain/sdk",
+  "homepage": "https://moxchain.com/",
   "description": "",
   "main": "dist/index.js",
   "files": [
@@ -11,7 +12,7 @@
     "clean": "rimraf dist",
     "build": "npm run clean && tsc -p tsconfig-build.json && tsc-alias"
   },
-  "author": "",
+  "author": "leonardo.bonetti@outlook.com",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^16.11.11",
