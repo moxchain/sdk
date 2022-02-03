@@ -10,6 +10,7 @@ type getMethods =
   | `storage/getItem/${string}`
   | `storage/getItemActions/${string}`
   | `storage/getItemBalance/${string}/${string}`
+  | `storage/getMoxBalance/${string}`
 type postMethods = 'add' | 'submitTx' | 'setWebhook'
 export interface RpcHandler {
   get: (method: getMethods, body?: any) => Promise<any>
