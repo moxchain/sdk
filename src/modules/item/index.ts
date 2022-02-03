@@ -10,7 +10,7 @@ import { consumeItem as methodConsumeItem } from '@/methods/item/consumeItem'
 
 export class Item implements ItemHandler {
   constructor (
-    private readonly metadataRpc: string,
+    private readonly metadataRpc: `0x${string}`,
     private readonly registry: TypeRegistry,
     private readonly transaction: TransactionHandler
   ) {}

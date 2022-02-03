@@ -1,6 +1,6 @@
 {
   "name": "@moxchain/sdk",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "repository": "https://github.com/moxchain/sdk",
   "homepage": "https://moxchain.com/",
   "description": "",
@@ -23,16 +23,15 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.3.1",
     "git-commit-msg-linter": "^3.2.6",
+    "@polkadot/types": "^6.10.3",
     "husky": "^7.0.4",
     "ts-node-dev": "^1.1.8",
     "tsc-alias": "^1.4.2",
     "typescript": "^4.5.2"
   },
   "dependencies": {
-    "@polkadot/api": "^6.10.3",
-    "@polkadot/types": "^6.10.3",
-    "@polkadot/util-crypto": "^8.0.5",
-    "@substrate/txwrapper-core": "^1.3.0",
+    "@polkadot/api": "6.5.1",
+    "@substrate/txwrapper-core": "1.2.17",
     "superagent": "^6.1.0"
   }
 }

@@ -10,7 +10,7 @@ import { TransactionHandler } from '@/domain/protocols/transaction'
 
 export class Actor implements ActorHandler {
   constructor (
-    private readonly metadataRpc: string,
+    private readonly metadataRpc: `0x${string}`,
     private readonly registry: TypeRegistry,
     private readonly transaction: TransactionHandler
   ) {}

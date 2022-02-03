@@ -7,7 +7,7 @@ import { TransactionInfo } from '@/domain/models/transaction'
 
 export class Transaction implements TransactionHandler {
   constructor (
-    private readonly metadataRpc: string,
+    private readonly metadataRpc: `0x${string}`,
     private readonly registry: TypeRegistry,
     private readonly node: NodeHandler,
     private readonly account: AccountHandler,

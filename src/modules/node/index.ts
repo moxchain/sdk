@@ -30,7 +30,7 @@ export class Node implements NodeHandler {
   }
 
   async metadata () {
-    const metarpc = await this.rpc.get('metadata') as string
+    const metarpc = await this.rpc.get('metadata') as `0x${string}`
     return metarpc
   }
 

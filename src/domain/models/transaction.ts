@@ -6,7 +6,7 @@ export interface TransactionInfo {
   blockNumber: number
   eraPeriod: number
   genesisHash: string
-  metadataRpc: string
+  metadataRpc: `0x${string}`
   nonce: number
   specVersion: number
   tip: number
@@ -14,6 +14,6 @@ export interface TransactionInfo {
 }
 
 export interface TransactionOptions {
-  metadataRpc: string
+  metadataRpc: `0x${string}`
   registry: TypeRegistry
 }

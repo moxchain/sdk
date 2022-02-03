@@ -9,7 +9,7 @@ export class Balances implements BalancesHandler {
     private readonly rpc: RpcHandler,
     private readonly transaction: TransactionHandler,
     private readonly registry: TypeRegistry,
-    private readonly metadataRpc: string
+    private readonly metadataRpc: `0x${string}`
   ) {}
 
   async get (accountId: string): Promise<string> {
