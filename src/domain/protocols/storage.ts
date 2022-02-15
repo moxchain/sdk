@@ -43,4 +43,5 @@ export interface StorageHandler {
   getItemActions: (itemHash: string) => Promise<ItemAction[]>
 
   getItemBalances: (itemHash: string, accountId: string) => Promise<ItemBalance>
+  getMoxBalance: (accountId: string) => Promise<string>
 }

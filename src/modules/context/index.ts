@@ -2,7 +2,7 @@ import { ContextHandler } from '@/domain/protocols/context'
 import { TypeRegistry } from '@substrate/txwrapper-core'
 import { createContext as methodCreateContext } from '@/methods/context/createContext'
 import { transferContext as methodTransferContext } from '@/methods/context/transferContext'
-import { blake2AsHex } from '@polkadot/util-crypto'
+import { blake2AsHex } from '@/util'
 import { TransactionHandler } from '@/domain/protocols/transaction'
 
 export class Context implements ContextHandler {

@@ -48,4 +48,10 @@ export class Storage implements StorageHandler {
     if (!resp) throw new Error('Not found')
     return resp
   }
+
+  async getMoxBalance (accountId: string): Promise<string> {
+    const resp = await this.rpc.get(`storage/getMoxBalance/${accountId}`)
+    if (!resp) throw new Error('Not found')
+    return resp
+  }
 }

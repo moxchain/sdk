@@ -6,7 +6,7 @@ import { removeActorAttribute as methodRemoveActorAttribute } from '@/methods/ac
 import { changeActorSaleStatus as methodChangeActorSaleStatus } from '@/methods/actor/changeActorSaleStatus'
 import { buyActor as methodBuyActor } from '@/methods/actor/buyActor'
 import { transferActor as methodTransferActor } from '@/methods/actor/transferActor'
-import { blake2AsHex } from '@polkadot/util-crypto'
+import { blake2AsHex } from '@/util'
 import { TransactionHandler } from '@/domain/protocols/transaction'
 
 export class Actor implements ActorHandler {

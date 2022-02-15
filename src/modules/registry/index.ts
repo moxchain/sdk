@@ -23,7 +23,7 @@ export class Registry implements RegistryHandler {
 
     return getRegistryBase({
       chainProperties: properties || KNOWN_CHAIN_PROPERTIES[specName],
-      specTypes: getSpecTypes(registry, chainName, specName, specVersion),
+      specTypes: getSpecTypes(registry as any, chainName, specName, specVersion) as any,
       metadataRpc
     })
   }

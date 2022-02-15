@@ -75,6 +75,6 @@ export class Account implements AccountHandler {
     const { signature } = this.registry.createType('ExtrinsicPayload', tx, {
       version: EXTRINSIC_VERSION
     }).sign(this.account)
-    return signature
+    return signature as `0x${string}`
   }
 }

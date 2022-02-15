@@ -10,7 +10,7 @@ import { changeItemSaleStatus as methodChangeItemSaleStatus } from '@/methods/it
 import { buyItem as methodBuyItem } from '@/methods/item/buyItem'
 import { transferItem as methodTransferItem } from '@/methods/item/transferItem'
 import { consumeItem as methodConsumeItem } from '@/methods/item/consumeItem'
-import { blake2AsHex } from '@polkadot/util-crypto'
+import { blake2AsHex } from '@/util'
 
 export class Item implements ItemHandler {
   constructor (
