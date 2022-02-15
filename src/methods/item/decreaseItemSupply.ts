@@ -7,17 +7,14 @@ import {
 } from '@substrate/txwrapper-core'
 
 // https://polkadot.js.org/docs/api/examples/promise/typegen/
-export interface CreateItemArgs extends Args {
-  identifier: string
-  contextId: string
-  totalSupply: number
-  unitPrice: number
-  availableToSale: boolean
+export interface DecreaseItemSupplyArgs extends Args {
+  itemId: string
+  amount: number
 }
 
 // Define the method
-export function createItem (
-  args: CreateItemArgs,
+export function decreaseItemSupply (
+  args: DecreaseItemSupplyArgs,
   info: BaseTxInfo,
   options: OptionsWithMeta
 ): UnsignedTransaction {
@@ -25,7 +22,7 @@ export function createItem (
     {
       method: {
         args,
-        name: 'createItem',
+        name: 'decreaseItemSupply',
         pallet: 'item'
       },
       ...info

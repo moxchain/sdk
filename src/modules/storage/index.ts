@@ -1,4 +1,4 @@
-import { StorageHandler } from '@/domain/protocols/storage'
+import { StorageHandler, Context, Actor, ActorAttribute, Item, ItemAction, ItemBalance } from '@/domain/protocols/storage'
 import { RpcHandler } from '@/domain/protocols/rpc'
 
 export class Storage implements StorageHandler {
@@ -6,65 +6,51 @@ export class Storage implements StorageHandler {
     private readonly rpc: RpcHandler
   ) {}
 
-  async getContext (contextHash: string): Promise<{
-    identifier: number
-    owner: string
-  }> {
-    const resp = await this.rpc.get(`storage/getContext/${contextHash}`)
+  async getContext (contextId: string): Promise<Context> {
+    const resp = await this.rpc.get(`storage/getContext/${contextId}`)
     if (!resp) throw new Error('Not found')
     return resp
   }
 
-  async getActor (actorHash: string): Promise<{
-    identifier: number
-    commonType: number
-    context: string
-    owner: string
-    availableToSale: boolean
-    price?: number
-  }> {
-    const resp = await this.rpc.get(`storage/getActor/${actorHash}`)
+  async getActor (actorId: string): Promise<Actor> {
+    const resp = await this.rpc.get(`storage/getActor/${actorId}`)
     if (!resp) throw new Error('Not found')
     return resp
   }
 
-  async getActorAttributes (actorHash: string): Promise<[{
-    identifier: number
-    val: number
-    mutable: number
-  }]> {
-    const resp = await this.rpc.get(`storage/getActorAttributes/${actorHash}`)
+  async getActorAttributes (actorId: string): Promise<string[]> {
+    const resp = await this.rpc.get(`storage/getActorAttributes/${actorId}`)
     if (!resp) throw new Error('Not found')
     return resp
   }
 
-  async getItem (itemHash: string): Promise<{
-    identifier: number
-    context: string
-    total_supply: number
-    available_supply: number
-    owner: string
-    unit_price: number
-    available_to_sale: boolean
-  }> {
-    const resp = await this.rpc.get(`storage/getItem/${itemHash}`)
+
+  async getActorAttribute (actorId: string, attributeId): Promise<ActorAttribute> {
+    const resp = await this.rpc.get(`storage/getActorAttribute/${actorId}/${attributeId}`)
     if (!resp) throw new Error('Not found')
     return resp
   }
 
-  async getItemActions (itemHash: string): Promise<[{
-    target_common_type: number
-    actor_attribute_index: number
-    operation: boolean
-    amount: number
-  }]> {
-    const resp = await this.rpc.get(`storage/getItemActions/${itemHash}`)
+  async getItem (itemId: string): Promise<Item> {
+    const resp = await this.rpc.get(`storage/getItem/${itemId}`)
     if (!resp) throw new Error('Not found')
     return resp
   }
 
-  async getItemBalances (itemHash: string, accountId: string): Promise<number> {
-    const resp = await this.rpc.get(`storage/getItemBalance/${itemHash}/${accountId}`)
+  async getItemActions (itemId: string): Promise<ItemAction[]> {
+    const resp = await this.rpc.get(`storage/getItemActions/${itemId}`)
+    if (!resp) throw new Error('Not found')
+    return resp
+  }
+
+  async getItemBalances (itemId: string, accountId: string): Promise<ItemBalance> {
+    const resp = await this.rpc.get(`storage/getItemBalance/${itemId}/${accountId}`)
+    if (!resp) throw new Error('Not found')
+    return resp
+  }
+
+  async getMoxBalance (accountId: string): Promise<string> {
+    const resp = await this.rpc.get(`storage/getMoxBalance/${accountId}`)
     if (!resp) throw new Error('Not found')
     return resp
   }

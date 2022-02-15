@@ -7,17 +7,15 @@ import {
 } from '@substrate/txwrapper-core'
 
 // https://polkadot.js.org/docs/api/examples/promise/typegen/
-export interface CreateItemArgs extends Args {
-  identifier: string
+export interface RemoveActorAttributeArgs extends Args {
+  actorId: string
+  actorAttributeId: string
   contextId: string
-  totalSupply: number
-  unitPrice: number
-  availableToSale: boolean
 }
 
 // Define the method
-export function createItem (
-  args: CreateItemArgs,
+export function removeActorAttribute (
+  args: RemoveActorAttributeArgs,
   info: BaseTxInfo,
   options: OptionsWithMeta
 ): UnsignedTransaction {
@@ -25,8 +23,8 @@ export function createItem (
     {
       method: {
         args,
-        name: 'createItem',
-        pallet: 'item'
+        name: 'removeActorAttribute',
+        pallet: 'actor'
       },
       ...info
     },

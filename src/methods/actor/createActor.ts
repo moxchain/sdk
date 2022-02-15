@@ -7,8 +7,10 @@ import {
 } from '@substrate/txwrapper-core'
 
 // https://polkadot.js.org/docs/api/examples/promise/typegen/
+
 export interface CreateActorArgs extends Args {
-  identifier: number
+  to: string,
+  identifier: string
   commonType: number
   contextId: string
   availableToSale: boolean
@@ -26,7 +28,7 @@ export function createActor (
       method: {
         args,
         name: 'createActor',
-        pallet: 'mox'
+        pallet: 'actor'
       },
       ...info
     },

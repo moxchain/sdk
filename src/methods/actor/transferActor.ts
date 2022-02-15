@@ -23,7 +23,7 @@ export function transferActor (
       method: {
         args,
         name: 'transferActorTo',
-        pallet: 'mox'
+        pallet: 'actor'
       },
       ...info
     },

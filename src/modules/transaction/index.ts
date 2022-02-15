@@ -2,12 +2,12 @@ import { NodeHandler } from '@/domain/protocols/node'
 import { AccountHandler } from '@/domain/protocols/account'
 
 import { TransactionHandler } from '@/domain/protocols/transaction'
-import { decode, TypeRegistry, construct } from '@substrate/txwrapper-core'
+import { decode, TypeRegistry, construct, UnsignedTransaction } from '@substrate/txwrapper-core'
 import { TransactionInfo } from '@/domain/models/transaction'
 
 export class Transaction implements TransactionHandler {
   constructor (
-    private readonly metadataRpc: string,
+    private readonly metadataRpc: `0x${string}`,
     private readonly registry: TypeRegistry,
     private readonly node: NodeHandler,
     private readonly account: AccountHandler,
@@ -58,5 +58,14 @@ export class Transaction implements TransactionHandler {
 
   calculateTxHash (tx) {
     return construct.txHash(tx)
+  }
+
+
+  async signAndSendTransaction (tx: UnsignedTransaction): Promise<string> {
+    const signPayload = this.signPayload(tx)
+    const signature = this.account.sign(signPayload)
+    const transaction = this.constructSignedTx(tx, signature)
+    const hash = await this.node.submitTx(transaction)
+    return hash
   }
 }

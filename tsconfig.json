@@ -5,6 +5,8 @@
     "declaration": true,
     "target": "ES2019",
     "sourceMap": true,
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
     "esModuleInterop": true,
     "rootDirs": [
       "src",
