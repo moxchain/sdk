@@ -23,7 +23,7 @@ Used to create new actors
     }>
 ```
 
-Returns an unsigned transaction that can be used to create and actor with the following params and the actor id
+Returns an unsigned transaction that can be used to create an actor with the following params and the actor id
 
 ## Create actor attributes
 

@@ -8,12 +8,15 @@ Context is the data struct that will be store all components of your game, use t
 
 ```typescript
   createContext(
-    identifier: string, // Any integer number in string format that you can use to identify this context
+    identifier: string, // Any string that will be converted into a hash that represent your context id
     eraPeriod = 100 // Era period means that this transaction has to be propagated in a maximum of 100 blocks after its creation
-  )
+  ) => Promise<{
+    utx: UnsignedTransaction, // Use this data with signAndSend function inside transaction module to propagate this actor to network 
+    contextId: string
+    }>
 ```
 
-Returns a unsigned transaction
+Returns an unsigned transaction that can be used to create an context with the following params and the context id
 
 ## Transfer context
 
@@ -26,7 +29,7 @@ Use this function to transfer your context and ALL entities above him to another
       to: string //  account who will receive
     },
     eraPeriod = 100 // Era period means that this transaction has to be propagated in a maximum of 100 blocks after its creation
-  )
+  ) => Promise<UnsignedTransaction>
 ```
 
 Returns a unsigned transaction
