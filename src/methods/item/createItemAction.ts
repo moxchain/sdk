@@ -9,8 +9,7 @@ import {
 // https://polkadot.js.org/docs/api/examples/promise/typegen/
 export interface CreateItemActionArgs extends Args {
   itemId: string
-  targetCommonType: number
-  actorAttributeIndex: number
+  actorAttributeId: string
   operation: boolean
   amount: number
 }
@@ -26,7 +25,7 @@ export function createItemAction (
       method: {
         args,
         name: 'createItemAction',
-        pallet: 'mox'
+        pallet: 'item'
       },
       ...info
     },

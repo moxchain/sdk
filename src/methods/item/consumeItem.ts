@@ -23,7 +23,7 @@ export function consumeItem (
       method: {
         args,
         name: 'consumeItem',
-        pallet: 'mox'
+        pallet: 'item'
       },
       ...info
     },
