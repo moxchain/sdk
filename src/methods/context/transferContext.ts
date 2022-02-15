@@ -23,7 +23,7 @@ export function transferContext (
       method: {
         args,
         name: 'transferContext',
-        pallet: 'mox'
+        pallet: 'context'
       },
       ...info
     },

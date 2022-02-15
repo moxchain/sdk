@@ -2,6 +2,7 @@ import { ContextHandler } from '@/domain/protocols/context'
 import { TypeRegistry } from '@substrate/txwrapper-core'
 import { createContext as methodCreateContext } from '@/methods/context/createContext'
 import { transferContext as methodTransferContext } from '@/methods/context/transferContext'
+import { blake2AsHex } from '@polkadot/util-crypto'
 import { TransactionHandler } from '@/domain/protocols/transaction'
 
 export class Context implements ContextHandler {
@@ -13,8 +14,9 @@ export class Context implements ContextHandler {
 
   async createContext (identifier, era) {
     const transactionInfo = await this.transaction.constructInfo(era)
+    const contextId = blake2AsHex(identifier)
     const unsigned = methodCreateContext({
-      identifier
+      identifier: contextId
     },
     transactionInfo,
     {
@@ -22,7 +24,7 @@ export class Context implements ContextHandler {
       registry: this.registry
     }
     )
-    return unsigned
+    return {utx: unsigned, contextId}
   }
 
   async transferContext (params, era) {
