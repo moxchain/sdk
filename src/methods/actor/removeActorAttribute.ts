@@ -7,15 +7,15 @@ import {
 } from '@substrate/txwrapper-core'
 
 // https://polkadot.js.org/docs/api/examples/promise/typegen/
-export interface ChangeActorSaleStatusArgs extends Args {
+export interface RemoveActorAttributeArgs extends Args {
   actorId: string
-  availableToSale: boolean
-  price?: number | null
+  actorAttributeId: string
+  contextId: string
 }
 
 // Define the method
-export function changeActorSaleStatus (
-  args: ChangeActorSaleStatusArgs,
+export function removeActorAttribute (
+  args: RemoveActorAttributeArgs,
   info: BaseTxInfo,
   options: OptionsWithMeta
 ): UnsignedTransaction {
@@ -23,7 +23,7 @@ export function changeActorSaleStatus (
     {
       method: {
         args,
-        name: 'changeActorSaleStatus',
+        name: 'removeActorAttribute',
         pallet: 'actor'
       },
       ...info

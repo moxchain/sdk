@@ -22,7 +22,7 @@ export function buyActor (
       method: {
         args,
         name: 'buyActor',
-        pallet: 'mox'
+        pallet: 'actor'
       },
       ...info
     },
