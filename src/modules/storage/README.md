@@ -7,7 +7,9 @@ Here you will find all the features related to the MØX storage
 Use this function to get context data
 
 ```typescript
-  await getContext(contextHash: string)
+  getContext(contextHash: string) => Promise<{
+    owner: string
+  }>
 ```
 
 Returns context data
@@ -17,7 +19,13 @@ Returns context data
 Use this function to get actor data
 
 ```typescript
-  await getActor(actorHash: string)
+  getActor(actorHash: string) => Promise<{
+  commonType: number
+  context: string
+  owner: string
+  availableToSale: boolean
+  price?: number
+}>
 ```
 
 Returns actor data
@@ -27,17 +35,35 @@ Returns actor data
 Use this function to get actor attributes data
 
 ```typescript
-  await getActorAttributes(actorHash: string)
+  getActorAttributes(actorHash: string) => Promise<string[]>
 ```
 
-Returns actor attributes data
+Returns actor attributes array
+
+## Get actor attribute
+
+Use this function to get actor attribute data
+
+```typescript
+  getActorAttribute(actorHash: string, attributeId: string) => Promise<{
+    actorAttributeId: string
+    value: number
+    mutable: boolean
+  }>
+```
+
+Returns actor attributes array
 
 ## Get item
 
 Use this function to get item data
 
 ```typescript
-  await getItem(itemHash: string)
+  getItem(itemHash: string) => Promise<{
+      context: string
+      totalSupply: number
+      owner: string
+  }>
 ```
 
 Returns item data
@@ -47,20 +73,28 @@ Returns item data
 Use this function to get item actions data
 
 ```typescript
-  await getItemActions(itemHash: string)
+  getItemActions(itemHash: string) => Promise<{
+      actorAttributeId: string
+      operation: boolean
+      amount: number
+  }[]>
 ```
 
-Returns item actions data
+Returns item actions array
 
 ## Get item balances
 
 Use this function to get item balances data
 
 ```typescript
-  await getItemBalances(
+  getItemBalances(
     itemHash: string,
     accountId: string // The public key of owner
-  )
+  ) => Promise<{
+      amount: number,
+      unitPrice: number,
+      availableToSale: boolean,
+  }>
 ```
 
 Returns number
