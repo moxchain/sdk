@@ -62,23 +62,32 @@ Read more about mØx entities on our [website](https://moxchain.com)
 Let's access the context module and call the create context function
 
 ``` typescript
-  const unsignedTransaction = await sdk.context.createContext(
-    "1", // Context identifier can be any integer number but need to be pass like string
+  const context = await sdk.context.createContext(
+    "My Context", // Context identifier can be any string that will be converted to a hash to become your context id
     100 // Era period means that this transaction has to be propagated in a maximum of 100 blocks after its creation 
   );
+
+  const {
+    utx, // This is the unsigned transaction that you will use to propagate this context to network
+    contextId
+  } = context
 ```
 
 Ok, the function inside the context module returns to you an unsigned transaction, now we need sign it and propagate the transaction
 
 ``` typescript
   // we convert the unsigned transaction to an signable payload
-  const signPayload = sdk.transaction.signPayload(unsignedTransaction);
+  const signPayload = sdk.transaction.signPayload(utx);
   // using the account module with the instantiates account we create a signature
   const signature = sdk.account.sign(signPayload)
   // We put all together
-  const transaction = sdk.transaction.constructSignedTx(unsignedTransaction, signature)
+  const transaction = sdk.transaction.constructSignedTx(utx, signature)
   // and send to network
   const hash = await sdk.node.submitTx(transaction)
+
+  // OR you can use short version
+
+  const hash = await sdk.transaction.signAndSendTransaction(utx)
 ```
 
 ### Access the blockchain storage
@@ -87,7 +96,7 @@ After we create our context and entities below it, we will eventually have to ac
 The storage module concentrates all these actions
 
 ``` typescript
-  const actorData = await sdk.storage.getActor('Your actor ID')
+  const contextData = await sdk.storage.getContext(contextId)
 ```
 
 ## Where to use MØX sdk?
