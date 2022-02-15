@@ -85,7 +85,7 @@ Ok, the function inside the context module returns to you an unsigned transactio
   // and send to network
   const hash = await sdk.node.submitTx(transaction)
 
-  // OR you can use shot version
+  // OR you can use short version
 
   const hash = await sdk.transaction.signAndSendTransaction(utx)
 ```
