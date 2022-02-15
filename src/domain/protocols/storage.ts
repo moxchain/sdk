@@ -1,37 +1,46 @@
 
-export interface StorageHandler {
-  getContext: (contextHash: string) => Promise<{
-    identifier: number
-    owner: string
-  }>
-  getActor: (actorHash: string) => Promise<{
-    identifier: number
-    commonType: number
-    context: string
-    owner: string
-    availableToSale: boolean
-    price?: number
-  }>
-  getActorAttributes: (actorHash: string) => Promise<[{
-    identifier: number
-    val: number
-    mutable: number
-  }]>
-  getItem: (itemHash: string) => Promise<{
-    identifier: number
-    context: string
-    total_supply: number
-    available_supply: number
-    owner: string
-    unit_price: number
-    available_to_sale: boolean
-  }>
-  getItemActions: (itemHash: string) => Promise<[{
-    target_common_type: number
-    actor_attribute_index: number
-    operation: boolean
-    amount: number
-  }]>
+export interface Context {
+  owner: string
+}
 
-  getItemBalances: (itemHash: string, accountId: string) => Promise<number>
+export interface Actor {
+  commonType: number
+  context: string
+  owner: string
+  availableToSale: boolean
+  price?: number
+}
+
+export interface ActorAttribute {
+  actorAttributeId: string
+  value: number
+  mutable: boolean
+}
+
+export interface Item {
+  context: string
+  totalSupply: number
+  owner: string
+}
+
+export interface ItemAction {
+  actorAttributeId: string
+  operation: boolean
+  amount: number
+}
+
+export interface ItemBalance {
+  amount: number,
+  unitPrice: number,
+  availableToSale: boolean,
+}
+export interface StorageHandler {
+  getContext: (contextId: string) => Promise<Context>
+  getActor: (actorId: string) => Promise<Actor>
+  getActorAttributes: (actorId: string) => Promise<string[]>
+  getActorAttribute: (actorId: string, attributeId: string) => Promise<ActorAttribute>
+  getItem: (itemId: string) => Promise<Item>
+  getItemActions: (itemHash: string) => Promise<ItemAction[]>
+
+  getItemBalances: (itemHash: string, accountId: string) => Promise<ItemBalance>
 }
