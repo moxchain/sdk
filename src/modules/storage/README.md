@@ -98,3 +98,15 @@ Use this function to get item balances data
 ```
 
 Returns number
+
+## Get møx balance
+
+Used to see the møx balance of any account
+
+```typescript
+  getMoxBalance (
+    accountId: string // the account
+  ) => Promise<string>
+```
+
+Returns a string that represent the møx balance
