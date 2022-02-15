@@ -24,7 +24,7 @@ export function transferItem (
       method: {
         args,
         name: 'transferItem',
-        pallet: 'mox'
+        pallet: 'item'
       },
       ...info
     },

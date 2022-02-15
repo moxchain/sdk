@@ -9,6 +9,7 @@ type getMethods =
   | `storage/getActorAttributes/${string}`
   | `storage/getItem/${string}`
   | `storage/getItemActions/${string}`
+  | `storage/getActorAttribute/${string}/${string}`
   | `storage/getItemBalance/${string}/${string}`
   | `storage/getMoxBalance/${string}`
 type postMethods = 'add' | 'submitTx' | 'setWebhook'

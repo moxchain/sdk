@@ -10,7 +10,7 @@ import {
 export interface ChangeActorSaleStatusArgs extends Args {
   actorId: string
   availableToSale: boolean
-  price: number | null
+  price?: number | null
 }
 
 // Define the method
@@ -24,7 +24,7 @@ export function changeActorSaleStatus (
       method: {
         args,
         name: 'changeActorSaleStatus',
-        pallet: 'mox'
+        pallet: 'actor'
       },
       ...info
     },

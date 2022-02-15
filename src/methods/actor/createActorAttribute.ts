@@ -8,10 +8,10 @@ import {
 
 // https://polkadot.js.org/docs/api/examples/promise/typegen/
 export interface CreateActorAttributeArgs extends Args {
-  identifier: number
-  val: number
+  value: number
   mutable: boolean
   actorId: string
+  actorAttributeId: string
   contextId: string
 }
 
@@ -26,7 +26,7 @@ export function createActorAttribute (
       method: {
         args,
         name: 'createActorAttribute',
-        pallet: 'mox'
+        pallet: 'actor'
       },
       ...info
     },

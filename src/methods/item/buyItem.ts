@@ -9,6 +9,7 @@ import {
 // https://polkadot.js.org/docs/api/examples/promise/typegen/
 export interface BuyItemArgs extends Args {
   itemId: string
+  seller: string
   amount: number
 }
 
@@ -23,7 +24,7 @@ export function buyItem (
       method: {
         args,
         name: 'buyItem',
-        pallet: 'mox'
+        pallet: 'item'
       },
       ...info
     },

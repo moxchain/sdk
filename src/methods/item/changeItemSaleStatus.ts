@@ -24,7 +24,7 @@ export function changeItemSaleStatus (
       method: {
         args,
         name: 'changeItemSaleStatus',
-        pallet: 'mox'
+        pallet: 'item'
       },
       ...info
     },

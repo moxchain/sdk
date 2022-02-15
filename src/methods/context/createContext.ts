@@ -11,7 +11,7 @@ export interface CreateContextArgs extends Args {
   /**
    * The recipient address, SS58 encoded.
    */
-  identifier: number
+  identifier: string
 }
 
 // Define the method
@@ -25,7 +25,7 @@ export function createContext (
       method: {
         args,
         name: 'createContext',
-        pallet: 'mox'
+        pallet: 'context'
       },
       ...info
     },
