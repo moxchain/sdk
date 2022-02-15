@@ -13,6 +13,7 @@ We recommend that you read the features of each module and how they can help you
 - [Context](src/modules/context/README.md) Context related functions
 - [Actor](src/modules/actor/README.md) Actor related functions
 - [Item](src/modules/items/README.md) Items related functions
+- [Balances](src/modules/balances/README.md) MØX Balances related functions
 - [Storage](src/modules/storage/README.md) Use to get access to blockchain storage
 
 
