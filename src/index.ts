@@ -26,7 +26,7 @@ import { StorageHandler } from './domain/protocols/storage'
 import { BalancesHandler } from './domain/protocols/balances'
 interface InitializeParams {
   serviceUrl: string
-  network: 'aquarium'
+  network: 'aquarium' | 'apertio'
 }
 
 export {
