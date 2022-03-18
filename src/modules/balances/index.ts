@@ -16,7 +16,7 @@ export class Balances implements BalancesHandler {
     return await this.rpc.get(`storage/getMoxBalance/${accountId}`)
   }
 
-  async transfer (amount: number, to: string, era): Promise<UnsignedTransaction> {
+  async transfer (amount: string, to: string, era): Promise<UnsignedTransaction> {
     const transactionInfo = await this.transaction.constructInfo(era)
     const unsigned = balancesTransfer({
       dest: to,
