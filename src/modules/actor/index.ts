@@ -18,7 +18,10 @@ export class Actor implements ActorHandler {
 
   async createActor (actor: ActorParams, era) {
     const transactionInfo = await this.transaction.constructInfo(era)
-    const actorId = blake2AsHex(actor.identifier)
+    const publicKey = transactionInfo.address;
+    const contextId = actor.contextId;
+    const identifier = actor.identifier
+    const actorId = blake2AsHex(`${publicKey}${contextId}${identifier}`)
     const unsigned = methodCreateActor(
       {
         availableToSale: actor.availableToSale,
@@ -38,7 +41,10 @@ export class Actor implements ActorHandler {
 
   async createActorAttribute (attribute: ActorAttributeParams, era) {
     const transactionInfo = await this.transaction.constructInfo(era)
-    const attributeId = blake2AsHex(attribute.identifier)
+    const publicKey = transactionInfo.address;
+    const contextId = attribute.contextId;
+    const identifier = attribute.identifier
+    const attributeId = blake2AsHex(`${publicKey}${contextId}${identifier}`)
     const unsigned = methodCreateActorAttribute(
       {
         actorAttributeId: attributeId,
