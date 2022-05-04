@@ -14,7 +14,8 @@ export class Context implements ContextHandler {
 
   async createContext (identifier, era) {
     const transactionInfo = await this.transaction.constructInfo(era)
-    const contextId = blake2AsHex(identifier)
+    const publicKey = transactionInfo.address;
+    const contextId = blake2AsHex(`${publicKey}${identifier}`)
     const unsigned = methodCreateContext({
       identifier: contextId
     },

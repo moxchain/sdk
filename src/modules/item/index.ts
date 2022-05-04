@@ -21,7 +21,10 @@ export class Item implements ItemHandler {
 
   async createItem (item: ItemParams, era) {
     const transactionInfo = await this.transaction.constructInfo(era)
-    const itemId = blake2AsHex(item.identifier)
+    const publicKey = transactionInfo.address
+    const contextId = item.contextId
+    const identifier = item.identifier
+    const itemId = blake2AsHex(`${publicKey}${contextId}${identifier}`)
     const unsigned = methodCreateItem(
       {
         availableToSale: item.availableToSale,
